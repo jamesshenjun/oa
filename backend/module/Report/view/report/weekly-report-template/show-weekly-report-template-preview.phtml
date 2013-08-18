@@ -1,0 +1,26 @@
+ <div class="pageContent">
+<div layoutH="1">
+<table class="ReportTable"  type='Preview' border="1"  >
+<tbody >
+
+<?php foreach ($templateHtml as $row):?>
+	<tr >
+	<?php foreach ($row as $cell):?>
+	<td 
+	width="<?php echo $cell['width']?>" height="<?php echo $cell['height']?>"
+	<?php if ($cell['type'] == 'complicated'):?>
+	colspan="<?php echo $cell['colspan']?>" rowspan="<?php echo $cell['rowspan']?>"
+	<?php else :?>
+	colspan="1" rowspan="1"
+	<?php endif;?>
+	>
+	<?php echo $cell['content']?>
+	</td>
+	<?php endforeach;?>
+	</tr>
+<?php endforeach;?>
+
+</tbody>
+</table>
+</div>
+</div><!-- pageContent end -->

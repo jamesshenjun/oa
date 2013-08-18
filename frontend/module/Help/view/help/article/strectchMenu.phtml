@@ -1,0 +1,27 @@
+<div class="content-left" id='StrectchMenu'>
+
+
+	<div class="StrectchMenuHeader">
+		<b>常见问题分类</b>
+	</div>
+	
+	<div  class="Accordion">
+	         <?php foreach($articleSortList as $key=>$articleSort):?>
+	              <div class="AccordionHeader <?php echo ($key==1)?'expanded':'compressed';?>"><?php echo $articleSort['name']; ?></div>
+	              
+				  <div class="AccordionContent <?php echo ($key==1)?'expanded':'compressed';?>">
+						<ul>
+							<?php foreach ($articleSort['child'] as $article):?>
+							<li>
+								<a href="<?php echo $this->url('help',array('controller'=>'article','action'=>'showArticleList'))?>"  data="sortId=<?php echo $article['id']?>" >
+	                                  &nbsp;&nbsp;&nbsp;<?php echo $article['name']?>&nbsp;&nbsp;&nbsp;
+	                            </a>
+	                        </li>
+	                        <?php endforeach;?>
+							
+					   </ul>
+				  </div><!--accordionContent end -->
+		   	<?php endforeach;?>
+
+	</div><!--Accordion end-->
+</div>

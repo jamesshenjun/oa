@@ -1,0 +1,51 @@
+<div class="pageContent">
+<div class="panel" defH="240">
+<h1>编辑文章分类</h1>
+<div>
+<?php 
+
+	$form = $this->articleSortAddForm;
+	
+	$action = $this->url('help',array('controller'=>'articleSort','action'=>'checkArticleSortEdit'));
+	
+	$form->setAttribute('action', $action);
+	
+	
+?>
+
+<?php echo $this->form()->openTag($form);?>
+<?php echo $this->formHidden($form->get('id')); ?>
+
+<table  class="list" width="99%">
+        <tbody>
+        	<?php if($form->has('article.parent_name')&&$form->has('article.parent_id')):?>
+        	<tr>
+				<td align="center" width='140'>上级分类</td>
+				<td align="left">
+				<?php echo $this->formText($form->get('article.parent_name'));?>
+				<?php echo $this->formHidden($form->get('article.parent_id'));?>
+				<a class="btnLook" href="<?php echo $this->url('help', array('controller'=>'articleSort','action'=>'showParentArticleSortList'))?>?id=<?php echo $form->get('id')->getValue()?>" lookupgroup="article"  width="780">选择上级分类</a>
+				</td>
+			</tr>
+			<?php endif;?>
+			<tr>
+				<td align="center" width='140'><label>分类名称:</label></td>
+				<td align="left"><?php echo $this->formText($form->get('name'))?></td>
+			</tr>
+			<tr>
+				<td align="center"><label>分类描述:</label></td>
+				<td align="left"><?php echo $this->formTextarea($form->get('description'))?></td>
+			</tr>
+			<tr>
+			    <td>&nbsp;</td>
+			    <td  align="left">
+			    	<?php echo $this->formButton($form->get('submit'));?>
+			    	<?php echo $this->formButton($form->get('reset'));?>
+			    </td>
+			</tr>
+		</tbody>	
+	</table>
+<?php echo $this->form()->closeTag();?>
+</div>
+</div><!-- panel end -->
+</div><!-- pageContent end -->

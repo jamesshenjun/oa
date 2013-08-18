@@ -1,0 +1,28 @@
+<div class="pageContent">
+<?php 
+	$form = $this->ReporttemplateAddForm;
+	$action = $this->url('report',array('controller'=>'weeklyreporttemplate','action'=>'checkWeeklyReportTemplateAdd'));
+	$form->setAttribute('action',  $action);
+	echo $this->form()->openTag($form);
+?>
+<table class='list'  width='100%'  >
+     <tr>
+        <td colspan="2" align='center'> 按照规定的格式添加报告模板以后，可以在报告模板列表中查看、编辑报告模板</td>
+      </tr>
+     <tr>
+        <td>报告模板的名称</td>
+        <td><?php  echo $this->formText($form->get('name'));?></td>
+      </tr>
+      <tr>
+        <td>选择文件</td>
+		<td align="left">
+		 <?php echo $this->formFile($form->get('template_excel'));?>
+	    </td>
+      </tr>
+      <tr>
+	    <td>&nbsp;</td>
+	    <td><?php  echo $this->formSubmit($form->get('submit'));?><input type='reset' value='重置' /></td>
+	  </tr>
+</table>
+<?php echo $this->form()->closeTag();?>
+</div><!-- pageContent end -->

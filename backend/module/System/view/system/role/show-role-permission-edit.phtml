@@ -1,0 +1,53 @@
+<?php 
+
+  $form = $this->rolePermissionForm;
+  
+  $action = $this->url('system',array('controller'=>'role','action'=>'checkRolePermissionEdit'));
+  
+  $form->setAttribute('action',$action);
+  
+?>
+
+
+<div class="pageContent">
+  <?php echo $this->form()->openTag($form);?>
+  <?php echo $this->formHidden($form->get('id'))?>
+  <table class="table" width="100%"  layoutH="48" targetType="navTab" border='1'>
+		<thead>
+			<tr>
+				<th width='30'>&nbsp;</th>
+				<th width="40"  align='center'>编号</th>
+				<th align='center'>节点名称</th>
+				<th width="80"  align='center'>节点级别</th>
+				<th width="90"  align='center'>子节点数量</th>
+				<th width="400" align='center'>功能描述</th>
+				<th width="80"  align='center'>节点状态</th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php foreach ($container as $node):?>
+		<tr target="id" rel="<?php echo $node['id'];?>">
+			<td width='30'><?php echo $this->formCheckbox($node['checkbox']);?></td>
+		    <td><?php echo $node['id'];?></td>
+			<td>
+				<?php if($node['children_count']>0):?>
+	                 <div  class="folder" style="margin-left:<?php echo $node['margin_left']?>px;"></div>
+	            <?php elseif($node['children_count']==0):?>
+	                 <div  class="file"   style="margin-left:<?php echo $node['margin_left']?>px;"></div>
+	            <?php endif;?>
+				<span class='item'><?php echo $node['title']?></span>
+			</td>
+			<td><?php echo $node['level'];?></td>
+			<td><?php echo $node['children_count'];?></td>
+			<td><?php echo $node['description'];?></td>
+			<td><?php echo $node['status'];?></td>
+		</tr>
+		<?php endforeach;?>
+		</tbody>
+	</table>
+	<div class="panelBar">
+	    <?php echo $this->formSubmit($form->get('submit')); ?>
+	    <?php echo $this->formButton($form->get('close')); ?>
+	</div>	
+  <?php echo $this->form()->closeTag(); ?>
+</div><!-- pageContent end -->

@@ -1,0 +1,9 @@
+.setting/*
+syntax: glob
+2/Version2.h
+1/Version1.h
+ChangeVersion/commit_version.pyo
+
+*.xlsx
+*.xls
+*.orig

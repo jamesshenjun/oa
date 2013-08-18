@@ -1,0 +1,18 @@
+<div class="pages">
+	<span>显示</span>
+	<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+		<option value="20" <?php if ($this->itemCountPerPage==20): echo 'selected="selected"';endif;?>>20</option>
+		<option value="50" <?php if ($this->itemCountPerPage==50): echo 'selected="selected"';endif;?>>50</option>
+		<option value="100" <?php if ($this->itemCountPerPage==100): echo 'selected="selected"';endif;?>>100</option>
+		<option value="200" <?php if ($this->itemCountPerPage==200): echo 'selected="selected"';endif;?>>200</option>
+	</select>
+	<span>条，共<?php echo $this->totalItemCount;?>条</span>
+</div>		
+<div class="pagination" 
+	 targetType="navTab"
+     totalCount="<?php echo $this->totalItemCount;?>" 
+     numPerPage="<?php echo $this->itemCountPerPage;?>" 
+     pageNumShow="<?php echo $this->pageCount;?>" 
+     currentPage="<?php echo $this->current;?>">
+</div>
+

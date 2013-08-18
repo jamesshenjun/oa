@@ -1,0 +1,46 @@
+<?php 
+  $form = $this->roleEditForm;
+  
+  $action = $this->url('system',array('controller'=>'role','action'=>'checkRoleEdit'));
+  
+  $form->setAttribute('action',$action);
+  
+?>
+
+<div class="pageContent" layoutH="20">
+<div class="panel" defH="240">
+<h1>编辑角色</h1>
+<div>
+<?php echo $this->form()->openTag($form);?>
+<?php echo $this->formHidden($form->get('id')); ?>
+<table class='list' width='100%' border='1'>
+	  <?php if($form->has('role.parent_name')&&$form->has('role.parent_id')):?>
+      <tr>
+          <td width='100' align='center'><label>父级角色：</label></td>
+          <td><?php echo $this->formText($form->get('role.parent_name'));?>
+			  <?php echo $this->formHidden($form->get('role.parent_id'));?>
+			  <a class="btnLook" href="<?php echo $this->url('system', array('controller'=>'role','action'=>'showParentRoleList'))?>?id=<?php echo $form->get('id')->getValue()?>" lookupgroup="role"  width="780">选择父级角色</a>
+		  </td>
+      </tr>
+      <?php endif;?>
+      <tr>
+          <td align='center' width='100'><label>角色名称：</label></td>
+          <td><?php echo $this->formText($form->get('name'));?></td>
+      </tr>
+      <tr>
+          <td align='center'><label>角色描述：</label></td>
+          <td><?php echo $this->formTextarea($form->get('description'));?></td>
+      </tr>
+      <tr>
+          <td align='center'>&nbsp;</td>
+          <td><?php 
+                   echo $this->formSubmit($form->get('submit'));
+                   echo $this->formButton($form->get('close'));
+              ?>
+          </td>
+      </tr>
+    </table> 
+<?php echo $this->form()->closeTag(); ?>
+</div>
+</div><!-- panel end -->
+</div><!-- pageContent end -->

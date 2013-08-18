@@ -1,0 +1,35 @@
+ <div class="pageContent">
+<div layoutH="1">
+<table class="ReportTable"  type='Preview' border="1"   >
+
+<thead>
+   <tr>
+      <td colspan="<?php echo $ReportInfo['column_count']?>" align="center" ><center><span  name= "title" style="width: 80%"><?php echo $ReportInfo ['title'] ?></span></center></td>
+   </tr>
+</thead>
+<tbody >
+
+<?php foreach ($ReportHtml as $row):?>
+	<tr >
+	<?php foreach ($row as $cell):?>
+	<td 
+	width="<?php echo $cell['width']?>" height="<?php echo $cell['height']?>"
+	<?php if ($cell['type'] == 'complicated'):?>
+	colspan="<?php echo $cell['colspan']?>" rowspan="<?php echo $cell['rowspan']?>"
+	<?php else :?>
+	colspan="1" rowspan="1"
+	<?php endif;?>
+	type = "<?php echo $cell['type']?>" address="<?php echo $cell['address']?>" sort="<?php echo $cell['sort']?>" 
+	>
+	<?php if ($cell['enedit'] == 'T'):?>
+	<pre><?php echo $cell['content']?></pre>
+	<?php else: echo $cell['content'];?>
+	<?php endif;?></td>
+	<?php endforeach;?>
+	</tr>
+<?php endforeach;?>
+
+</tbody>
+</table>
+</div>
+</div><!-- pageContent end -->

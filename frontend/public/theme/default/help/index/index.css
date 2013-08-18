@@ -1,0 +1,99 @@
+@CHARSET "UTF-8";
+#serviceList{/*提供的服务列表*/
+width:960px;
+margin:0px auto;
+margin-top:20px;
+border:1px solid #e9e9e9;
+}
+
+#serviceList thead tr th{/*服务列表的头部说明*/
+height:30px;
+line-height:30px;
+text-align:left;
+text-indent:30px;
+}
+.serviceItem{
+width:184px;
+height:211px;
+margin:0px auto;
+/*
+border:1px solid #ff0000;
+*/
+}
+#onlineService{
+background:url(image/onlineService.jpg) no-repeat;	
+}
+
+#serviceHotline{
+background:url(image/serviceHotline.jpg) no-repeat;	
+}
+#documentCenter{
+background:url(image/documentCenter.jpg) no-repeat;	
+}
+#everydayProgress{
+background:url(image/everydayProgress.jpg) no-repeat;	
+}
+
+
+.articleCollection{
+width:960px;
+height:auto;
+margin:0px auto;
+margin-top:20px;
+}
+.articleCollection thead{
+border-bottom:1px dashed #637790;	
+}
+
+.articleCollection thead tr th{
+height:30px;
+line-height:30px;
+text-align:left;
+text-indent:30px;
+font-size:14px;
+
+}
+.articleCollection thead tr th .details{
+font-size:12px;
+color:#999999;
+height:20px;
+line-height:20px;
+padding:0px 10px;
+margin-top:10px;
+font-weight:normal;
+}
+
+.articleCollection tbody tr td{
+
+}
+.articleCollection tbody tr td .articleItem{
+width:200px;
+height:38px;
+line-height:38px;
+padding:0px 0px 0px 40px;
+/*
+border:1px solid #ff0000;
+*/
+}
+.articleCollection tbody tr td .icon{
+width:30px;
+height:38px;
+/*
+border-left:1px solid #ff0000;
+border-right:1px solid #ff0000;
+*/
+float:left;
+}
+.wrench{
+background:url(image/wrenchBg.jpg) no-repeat;
+}
+.questionMark{
+background:url(image/questionMarkBg.jpg) no-repeat;	
+}
+.handbook{
+background:url(image/handbookBg.jpg) no-repeat;	
+}
+
+
+
+

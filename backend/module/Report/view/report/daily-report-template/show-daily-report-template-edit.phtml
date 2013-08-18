@@ -1,0 +1,32 @@
+<div class="pageContent">
+
+<div layoutH="1">
+<table class="ReportTable"  type='EditTempalte' border="1"  PostURL="<?php echo $this->url('report',array('controller'=>'dailyreporttemplate','action'=>'checkDailyReportTemplateEdit'));?>" TemplateId = "<?php echo $templateInfo['id']?>" >
+<tbody>
+
+<?php foreach ($templateHtml as $rowkey=>$row){?>
+	<tr >
+	
+	<?php foreach ($row as $key=>$cell){?>
+		<td 
+		width="<?php echo $cell['width']?>" <?php if($key ==0){ echo ' height="'.$cell['height'].'"'; }?>"
+		colspan="<?php echo $cell['colspan']?>" rowspan="<?php echo $cell['rowspan']?>"
+		type = "<?php echo $cell['type']?>" address="<?php echo $cell['address']?>" sort="<?php echo $cell['sort']?>" 
+		><div><?php echo $cell['content'];?></div>
+		</td>
+		
+	<?php }?>
+			
+	</tr>
+	
+<?php }?>
+
+</tbody>
+<tfoot>
+   <tr>
+     <td colspan="<?php echo $templateInfo['column_count']?>" align='right'><input class='ReportFormSubmitButton' type='button' value='提交'></td>
+   </tr>
+</tfoot>
+</table>
+</div>
+</div><!-- pageContent end -->

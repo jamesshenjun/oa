@@ -1,0 +1,42 @@
+<div class="pageContent">
+	<table class="table" width="100%"  layoutH="50" targetType="navTab">
+		<thead>
+			<tr>
+			    <th width="40">&nbsp;</th>
+				<th width="40" align='center'>编号</th>
+				<th align='center'>分类名称</th>
+				<th width="100" align='center'>分类级别</th>
+				<th width="100" align='center'>子分类数量</th>
+				<th width="100" align='center'>文章数量</th>
+			</tr>
+		</thead>
+		<tbody>
+		     <?php foreach ($articleSortList as $articleSort):?>
+	            <tr target="id" rel="<?php echo $articleSort['id']?>">
+	                <?php if(!in_array($articleSort['id'],$articleSortChildrenIdList)):?>
+	           		<td align='center'><input type="radio" name="article" value="{parent_id:'<?php echo $articleSort['id'];?>',parent_name:'<?php echo $articleSort['name'];?>'}" /></td>
+	            	<?php else:?>
+	            	<td align='center'>&nbsp;</td>
+	            	<?php endif;?>
+	            	<td align='center'><?php echo $articleSort['id']?></td>
+	                <td align='left'>
+	                   <?php if($articleSort['children_count']  >0):?>
+	                      <div  class="folder" style="margin-left:<?php echo $articleSort['margin_left']?>px;"></div>
+	                   <?php elseif($articleSort['children_count']==0):?>
+	                      <div  class="file"   style="margin-left:<?php echo $articleSort['margin_left']?>px;"></div>
+	                   <?php endif;?>
+	                   <span class='item'><?php echo $articleSort['name']?></span>
+	                </td>
+				    <td align='center'><?php echo $articleSort['level'];?></td>
+	                <td align="center"><?php echo $articleSort['children_count'];?></td>
+	                <td align='center'><?php echo $articleSort['article_count'];?></td>
+	            </tr>
+	        <?php endforeach;?>
+		</tbody>
+		<tfoot>
+		    <tr>
+		       <td colspan='6' align='right'><input type="button" multLookup="article" warn="请选择一个文章分类"  value='确认选择' /></td>
+		    </tr>
+		</tfoot>
+	</table>
+</div><!-- pageContent end -->

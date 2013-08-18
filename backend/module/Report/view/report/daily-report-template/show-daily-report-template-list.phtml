@@ -1,0 +1,66 @@
+<?php 
+$form = $this->reporttemplateForm;
+$action = $this->url('report',array('controller'=>'dailyReportTemplate','action'=>'showDailyReportTemplateList')); 
+$form->setAttribute('action',  $action);
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('pageNum'));
+echo $this->formHidden($form->get('numPerPage'));
+echo $this->form()->closeTag();
+?>
+
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add"    href="<?php echo $this->url('report',array('controller'=>'dailyReportTemplate','action'=>'showDailyReportTemplateAdd'));?>"  target="dialog"  title="日报模板添加"   mask='true' width='514' height='190' resizable='false'><span>添加模板</span></a></li>
+		    <li><a class="delete" href="<?php echo $this->url('report',array('controller'=>'dailyReportTemplate','action'=>'checkDailyReportTemplateDelete'));?>?id={id}"  target="ajaxTodo" warn="请选择一个日报模板"><span>删除模板</span></a></li>
+			<li><a class="edit"   href="<?php echo $this->url('report',array('controller'=>'dailyReportTemplate','action'=>'showDailyReportTemplateEdit'));?>?id={id}"    title="日报模板编辑"   target="navTab"      warn="请选择一个日报模板"><span>编辑模板</span></a></li>
+			<li class="line">line</li>
+			<li><a class="add"    href="<?php echo $this->url('report',array('controller'=>'dailyReportTemplate','action'=>'showDailyReportTemplatePreview'));?>?id={id}"  title="日报模板预览"   target="navTab"      warn="请选择一个日报模板"><span>预览模板</span></a></li>
+		    <li><a class="delete" href=""  target="ajaxTodo" warn="请选择一个日报模板"><span>禁用模板</span></a></li>
+			<li><a class="edit"   href=""    target="ajaxTodo" warn="请选择一个日报模板"><span>启用模板</span></a></li>
+		</ul> 
+	</div>
+	<table class="table" width="99%"  layoutH="78" targetType="navTab">
+		<thead>
+			<tr>
+			    <th align='center' width="60">编号</th>
+				<th align='center'>名称</th>
+				<th align='center' width="100">创建人</th>
+				<th align='center' width="140">指定部门</th>
+				<th align='center' width="160">创建时间</th>
+				<th align='center' width="60">状态</th>
+			</tr>
+		</thead>
+		<tbody>
+		    <?php foreach ($templateList as $value):?>
+			<tr target="id" rel="<?php echo $value['id']; ?>">
+			    <td><?php echo $value['id']; ?></td>
+				<td><?php echo $value['name'];?></td>
+				<td><?php echo $value['add_user_name'];?></td>
+				<td><?php echo $value['department_name'];?></td>
+				<td><?php echo $value['add_time'];?></td>
+				<td><?php echo $value['status'];?></td>
+			</tr>
+		    <?php endforeach;?>
+		</tbody>
+	</table>
+	<div class="panelBar">
+		<div class="pages">
+			<span>显示</span>
+			<?php  
+			$reporttemplatePageForm = $this->reporttemplatePageForm;
+			//echo $this->Form()->openTag($reporttemplatePageForm);
+			echo $this->formSelect($reporttemplatePageForm->get('numPerPage'));
+			//echo $this->Form()->closeTag();
+			?>
+			<span>条，共<?php echo $totalCount;?>条</span>
+		</div>		
+		<div class="pagination" 
+		    targetType="navTab"
+		    totalCount="<?php echo $totalCount;?>" 
+		    numPerPage="<?php echo $numPerPage;?>" 
+		    pageNumShow="<?php echo $pageNumShow;?>" 
+		    currentPage="<?php echo $pageNum;?>">
+		</div>
+	</div>
+</div>

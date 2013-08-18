@@ -1,0 +1,47 @@
+<script type="text/javascript">
+//值带回
+function bringBack(){
+	
+	var roleIdStr = '';
+	var roleNameStr = '';	
+	var length = $("input:checked").length;
+
+	if(length){
+		var roleIdArr = new Array();
+		var roleNameArr = new Array();
+		
+	    $("input:checked").each(function(){       
+	        if($(this).val()){
+	            
+	    	    var roleId = $(this).val();
+	    	    var roleName = $(this).next("span").html();
+	    	    
+	    	    roleIdArr.push(roleId);
+	    	    roleNameArr.push(roleName);
+	        }
+	    });
+	    
+	    roleIdStr = roleIdArr.join(",");
+	    roleNameStr = roleNameArr.join(",");	
+    }
+    //值带回
+	$.bringBack({roleIdList:roleIdStr, roleList:roleNameStr});
+}
+</script>
+<div class="pageContent">
+    <form>
+	    <table class="table" width="100%" layoutH="38">
+		    <?php foreach ($roleList as $role):?>
+			<tr>
+			    <td><input type="checkbox" name="id" value="<?php echo $role['id']; ?>" <?php if($role["checked"]=="Y"): echo 'checked="checked"'; endif;?>/><span><?php echo $role['name'];?></span></td>
+			</tr>
+		    <?php endforeach;?>
+	    </table>
+	    <div class="formBar">
+		<ul>
+			<li><input type="reset" value="重置"/></li>
+			<li><input type="button" value="确定" onclick="bringBack()"/></li>
+		</ul>
+	    </div>
+	</form>
+</div>

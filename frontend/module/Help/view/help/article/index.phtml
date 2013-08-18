@@ -1,0 +1,22 @@
+<?php echo $this->headerSearch;?>
+<div class="content">
+<table width="100%" >
+<tr>
+	<td valign="top">
+		<?php echo $this->strectchMenu;?>
+	</td>
+	<td valign="top">
+	<div class="content-right">
+		<?php echo $this->articleList; ?>
+	</div><!-- content-right end -->
+</td>
+</tr>
+</table>
+</div><!-- content end -->
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".Accordion").StrectchMenu();
+	paginatorEnv();
+	searchEnv();
+});
+</script>

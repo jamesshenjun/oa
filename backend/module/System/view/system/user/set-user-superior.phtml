@@ -1,0 +1,16 @@
+<div class="pageContent">
+    <form>
+	    <table class="table" width="100%" layoutH="38">
+		    <?php $flag = 0;
+		    foreach ($UserList as $user):?>
+			<tr>
+				<?php if($user['id'] == 1){$flag = 1;}?>
+			    <td><span><?php echo $user['realname'];?></span><a class="btnSelect" href="javascript:$.bringBack({superiorId:'<?php echo $user['id']?>', superiorName:'<?php echo $user['realname']?>'})" title="查找带回">选择</a></td>
+			</tr>
+		    <?php endforeach;?>
+		    <?php if($flag == 0 ){?>
+		    <td><span>沈振冈</span><a class="btnSelect" href="javascript:$.bringBack({superiorId:'1', superiorName:'沈振冈'})" title="查找带回">选择</a></td>
+		    <?php }?>
+	    </table>
+	</form>
+</div>

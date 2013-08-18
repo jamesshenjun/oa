@@ -1,0 +1,40 @@
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" 	  href="<?php echo $this->url('help',array('controller'=>'articleSort','action'=>'showArticleSortAdd'));?>"     target="navTab"><span>添加文章分类</span></a></li>
+			<li><a class="delete" href="<?php echo $this->url('help',array('controller'=>'articleSort','action'=>'checkArticleSortDelete'));?>?id={id}" target="ajaxTodo" title="确定要删除吗?"><span>删除文章分类</span></a></li>
+			<li><a class="edit"   href="<?php echo $this->url('help',array('controller'=>'articleSort','action'=>'ShowArticleSortEdit'));?>?id={id}"    target="navTab"><span>编辑文章分类</span></a></li>
+		 </ul>
+	</div>
+	<table class="table" width="100%"  layoutH="40" targetType="navTab">
+		<thead>
+			<tr>
+			    <th width="40" align='center'>编号</th>
+				<th align='center'>分类名称</th>
+				<th width="100" align='center'>分类级别</th>
+				<th width="100" align='center'>子分类数量</th>
+				<th width="100" align='center'>文章数量</th>
+				<th width="140" align='center'>分类状态</th>
+			</tr>
+		</thead>
+		<tbody>
+		     <?php foreach ($articleSortList as $articleSort):?>
+	            <tr target="id" rel="<?php echo $articleSort['id']?>">
+	            	<td align='center'><?php echo $articleSort['id']?></td>
+	                <td align='left'>
+	                   <?php if($articleSort['children_count']>0):?>
+	                      <div  class="folder" style="margin-left:<?php echo $articleSort['margin_left']?>px;"></div>
+	                   <?php elseif($articleSort['children_count']==0):?>
+	                      <div  class="file"   style="margin-left:<?php echo $articleSort['margin_left']?>px;"></div>
+	                   <?php endif;?>
+	                   <span class='item'><?php echo $articleSort['name']?></span>
+	                </td>
+				    <td align='center'><?php echo $articleSort['level'];?></td>
+	                <td align="center"><?php echo $articleSort['children_count'];?></td>
+	                <td align='center'><?php echo $articleSort['article_count'];?></td>
+	                <td align='center'><?php echo $articleSort['status']?></td>
+	            </tr>
+	        <?php endforeach;?>
+		</tbody>
+	</table>
+</div><!-- pageContent end -->

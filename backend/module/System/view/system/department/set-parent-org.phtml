@@ -1,0 +1,36 @@
+<div class="pageContent">
+	<table class="table" width="100%" layoutH="50"  targetType="navTab">
+		<thead>
+			<tr>
+			    <th width="40">&nbsp;</th>
+				<th width="40" align='center'>编号</th>
+				<th align='center'>部门名称</th>
+			</tr>
+		</thead>
+		<tbody>
+		     <?php foreach ($departmentList as $department):?>
+	            <tr target="id" rel="<?php echo $department['id']?>">
+	                <?php if(!in_array($department['id'],$departmentChildrenIdList)):?>
+	           		<td align='center'><input type="radio" name="org" value="{parent_id:'<?php echo $department['id'];?>',parent_name:'<?php echo $department['name'];?>'}" /></td>
+	            	<?php else:?>
+	            	<td align='center'>&nbsp;</td>
+	            	<?php endif;?>
+	            	<td align='center'><?php echo $department['id']?></td>
+	                <td align='left'>
+	                   <?php if($department['children_count']  >0):?>
+	                      <div  class="folder" style="margin-left:<?php echo $department['margin_left']?>px;"></div>
+	                   <?php elseif($department['children_count']==0):?>
+	                      <div  class="file"   style="margin-left:<?php echo $department['margin_left']?>px;"></div>
+	                   <?php endif;?>
+	                   <span class='item'><?php echo $department['name']?></span>
+	                </td>
+	            </tr>
+	        <?php endforeach;?>
+		</tbody>
+	</table>
+</div><!-- pageContent end -->
+<div class="panelBar">
+    <ul class="toolBar">
+		<li><input type="button" multLookup="org" warn="请选择一个部门"  value='确认选择' /></li>
+	</ul>
+</div>

@@ -1,0 +1,24 @@
+@CHARSET "UTF-8";
+table{ border-collapse:collapse;}
+
+table tr td label{
+/*td 单元格中label、input、select在一条水平线上*/
+vertical-align:middle;	
+}
+table tr td input{
+/*td 单元格中label、input、select在一条水平线上*/
+vertical-align:middle;	
+}
+table tr td select{
+/*td 单元格中label、input、select在一条水平线上*/
+vertical-align:middle;	
+}
+table tr td div{
+/*td 单元格中label、input、select在一条水平线上*/
+vertical-align:middle;	
+}
+table tr td button{
+/*td 单元格中label、input、select在一条水平线上*/
+vertical-align:middle;	
+}
+

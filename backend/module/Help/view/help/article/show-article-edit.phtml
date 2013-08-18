@@ -1,0 +1,48 @@
+<?php 
+
+   $form   = $this->articleEditForm;
+   
+   $action = $this->url('help',array('controller'=>'article','action'=>'checkArticleEdit'));
+   
+   $form->setAttribute('action',$action);
+
+?>
+<div class="pageFormContent nowrap" layoutH="30" style="overflow-x:hidden;">
+	<div>
+    <?php echo  $this->form()->openTag($form);?>
+    <?php echo  $this->formHidden($form->get('id'));?>
+	<table id='ArticleAddTable'  width='100%' cellspacing='0'  cellpadding='0' border='0'>
+      <tr>
+         <td align='left' width='160'><label>文章标题：</label></td>
+         <td><?php echo $this->formText($form->get('title'));?></td>
+      </tr>
+      <tr>
+         <td align='left'><label>文章副标题：</label></td>
+         <td><?php echo $this->formText($form->get('sub_title'));?></td>
+      </tr>
+      <tr>
+          <td align='left' ><label>文章分类：</label></td>
+          <td><?php echo $this->formText($form->get('article.article_sort_name'));?>
+			  <?php echo $this->formHidden($form->get('article.article_sort_id'));?>
+			  <a class="btnLook" href="<?php echo $this->url('help', array('controller'=>'article','action'=>'showArticleSortList'))?>" lookupgroup="article"  width="780">选择文章所属分类</a>
+		  </td>
+      </tr>
+      <tr> 
+          <td align='left'><label>文章关键词：</label></td>
+          <td><?php echo $this->formText($form->get('keyword'));?></td>
+      </tr>
+      <tr>
+         <td align='left'  valign='top'><label>文章内容：</label></td>
+         <td><?php echo $this->formTextarea($form->get('content'));?></td>
+      </tr>
+      <tr>
+          <td>&nbsp;</td>
+          <td>
+               <input type='submit'  value='提交' />
+               <input type='button'  class='close'  value='关闭窗口' />
+          </td>
+      </tr>
+</table>
+<?php echo $this->form()->closeTag();?>
+</div>
+</div><!-- pageContent end -->

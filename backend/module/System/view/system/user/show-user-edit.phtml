@@ -1,0 +1,79 @@
+<?php 
+	$form = $this->userform;
+	$action = $this->url('system',array('controller'=>'user','action'=>'checkUserEdit'));
+	$form->setAttribute('action',  $action);
+	echo $this->form()->openTag($form);
+?>
+		<div class="pageFormContent nowrap" layoutH="97" style="overflow-x:hidden;">
+
+			<dl>
+				<dt>账号：</dt>
+				<dd>
+					<?php  echo $this->formText($form->get('username'));?>
+				</dd>
+			</dl>
+			<dl>
+				<dt>真实姓名：</dt>
+				<dd>
+					<?php  echo $this->formText($form->get('realname'));?>
+				</dd>
+			</dl>
+			<dl>
+				<dt>密码：</dt>
+				<dd>
+					<?php  echo $this->formPassword($form->get('password'));?>
+				</dd>
+			</dl>
+			<dl>
+				<dt>确认密码：</dt>
+				<dd>
+					<?php  echo $this->formPassword($form->get('confirmPassword'));?>
+				</dd>
+			</dl>
+			<dl>
+				<dd>
+				    <?php echo $this->formRow($form->get('roleIds')); ?>
+				</dd>
+			</dl>
+			<dl>
+				<dt>部门：</dt>
+				<dd>
+					<?php $form->get('department_id')->setAttribute('post_url', $this->url('system',array('controller'=>'user','action'=>'AjaxGetDepartmentComplexChildrenList')));?>
+				    <?php  echo $this->formElement($form->get('department_id'));?>			
+				</dd>
+			</dl>
+			<dl>
+				<dt>身份证ID：</dt>
+				<dd>
+					<?php  echo $this->formText($form->get('id_card_number'));?>
+				</dd>
+			</dl>
+			<dl>
+				<dt>家庭住址：</dt>
+				<dd>
+					<?php  echo $this->formText($form->get('address'));?>
+				</dd>
+			</dl>
+			<dl>
+				<dt>电话：</dt>
+				<dd>
+					<?php  echo $this->formText($form->get('telephone'));?>
+				</dd>
+			</dl>
+			<dl>
+				<dt>电子邮箱：</dt>
+				<dd>
+					<?php  echo $this->formText($form->get('email'));?>
+				</dd>
+			</dl>
+
+			<dl>
+				<dt>&nbsp;</dt>
+				<dd>	
+				    <?php  echo $this->formHidden($form->get('userId'));?>			
+                    <?php  echo $this->formButton($form->get('submit'));?>
+                    <?php  echo $this->formButton($form->get('close'));?>		
+				</dd>
+			</dl>
+		</div>
+<?php echo $this->form()->closeTag();?>

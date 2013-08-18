@@ -1,0 +1,60 @@
+<?php echo $this->doctype(); ?>
+
+<html>
+<head>
+<meta charset="utf-8">
+<?php echo $this->headTitle() ?>
+
+<?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
+
+<!-- Le styles -->
+<?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/theme/favicon.ico'))
+                        ->appendStylesheet($this->basePath() . '/theme/default/layout/layout.css')
+                        ->appendStylesheet($this->basePath() . '/theme/default/help/index/index.css')
+                        ->appendStylesheet($this->basePath() . '/theme/default/help/article/article.css') ?>
+
+<!-- Scripts -->
+<?php echo $this->headScript()->appendFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+							  ->appendFile($this->basePath() . '/js/jquery.min.js')
+                              ->appendFile($this->basePath() . '/js/jquery.strectch.menu.js')
+                              ->appendFile($this->basePath() . '/js/tools.js')
+                             ?>
+
+</head>
+<body>
+<div id='wrap'>
+	<div id='allContainer'>
+		<div id='header'>
+   			<div id='headerLogo'>&nbsp;</div>
+   			<div id='headerNavigation'>
+   			
+   			   <ul class='itemContainer'>
+   			       <li <?php if(!isset($select) || $select == 'index' ) echo 'class="selected" ';?> >
+   			            <a href='<?php echo $this->url('home');?>'    >
+   			                <div class='left'>&nbsp;</div>
+   			                <div class='middle'>首页</div>
+   			                <div class='right'>&nbsp;</div>
+   			            </a>
+   			       </li>
+   			       <li <?php if(isset($select)  && $select == 'question') echo  'class="selected" ';?> >
+   			            <a href='<?php echo $this->url('help',array('controller'=>'article','action'=>'index'));?>'>
+   			            	<div class='left'>&nbsp;</div> 
+   			                <div class='middle'>常见问题</div>
+   			                <div class='right'>&nbsp;</div>
+   			            </a>
+   			       </li>
+   			   </ul>
+   			   
+   			   <div class="righttop" >&nbsp;</div>
+   			</div>
+		</div><!-- header end -->
+		<div id="mainer">
+            <?php echo $this->content; ?>
+        </div> <!-- mainer end -->
+		<div id='footer'>
+    		<p>Copyright @ 2006-2012 ETAH Corporation. All Rights Reserved.</p>
+		</div><!-- footer end  -->
+	</div><!-- AllContainer end  -->
+</div><!-- wrap end  -->
+</body>
+</html>

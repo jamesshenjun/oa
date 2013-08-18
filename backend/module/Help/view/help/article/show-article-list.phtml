@@ -1,0 +1,70 @@
+<?php 
+	$form = $this->articleListForm;
+	$action = $this->url('help',array('controller'=>'article','action'=>'showArticleList'));
+	$form->setAttribute('action',  $action);
+?>
+
+
+<div class="pageHeader">
+
+    <?php echo  $this->form()->openTag($form);?>
+    <?php echo  $this->formHidden($form->get('pageNum'));?>
+    
+    <?php echo  $this->formHidden($form->get('numPerPage'));?>
+    
+   <table id='ArticleListTable' width='100%' border='0'>
+        <tr>
+            <td align='center' width='60'><label>文章编号</label></td>
+            <td width='140'><?php echo $this->formText($form->get('id'));?></td> 
+            <td align='center' width='60'><label>关键词语</label></td>
+	        <td width='140'><?php echo $this->formText($form->get('keyword'));?></td>
+            <td align='center' width='60'><label>文章作者</label></td>   
+            <td width='140'><?php echo $this->formText($form->get('author'));?></td>
+            <td align='center' width='60'><label>所在分类</label></td>
+            <td width='140'><?php echo $this->formSelect($form->get('article_sort_id'));?></td>
+            <td><input type="submit" value='点击查询' /></td>
+        </tr>
+       </table>
+	<?php echo $this->form()->closeTag();?>
+	
+</div><!-- pageHeader end -->
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" 	  href="<?php echo $this->url('help',array('controller'=>'article','action'=>'showArticleAdd'));?>" target="navTab" rel="showArticleAdd"><span>添加文章</span></a></li>
+			<li><a class="delete" href="<?php echo $this->url('help',array('controller'=>'article','action'=>'checkArticleDelete'));?>?id={id}" target="ajaxTodo" title="确定要删除吗?"><span>删除文章</span></a></li>
+			<li><a class="edit"   href="<?php echo $this->url('help',array('controller'=>'article','action'=>'showArticleEdit'));?>?id={id}"    target="navTab" rel="showArticleEdit" ><span>修改文章</span></a></li>
+		 </ul>
+	</div>
+	<table class="table" width="100%"  layoutH="115" targetType="navTab">
+		<thead>
+			<tr>
+			    <th width="15%" align='center'>编号</th>
+				<th width="30%" align='center' >文章标题</th>
+				<th width="15%" align='center'  >文章作者</th>
+				<th width="10%" align='center'>所在分类</th>
+				<th width="10%" align='center'>点击数</th>
+				<th width="20%" align='center'>发布时间</th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php //print_r($articleInfoList); ?>
+		    <?php foreach($articleInfoList as $key=>$articleInfo ):?>
+		    <tr target="id" rel="<?php echo $articleInfo->id;?>">
+		        <td><?php echo $articleInfo->id;?></td>
+		        <td><?php echo $articleInfo->title;?></td>
+		        <td><?php echo $articleInfo->realname;?></td>
+		        <td><?php echo $articleInfo->article_sort_name;?></td>
+		        
+		     
+		        <td align='center'><?php echo $articleInfo->hits;?></td>
+		        <td><?php echo $articleInfo->add_time;?></td>
+			</tr>
+			<?php endforeach;?>
+		</tbody>
+	</table>
+	
+	<div class="panelBar">
+		<?php echo $this->paginationControl($paginator,'All','partial/dwz-paginator');?>
+	</div>
+</div>

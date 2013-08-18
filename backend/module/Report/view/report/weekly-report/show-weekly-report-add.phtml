@@ -1,0 +1,47 @@
+<?php $form = $this->ReturnAddForm?>
+<div class="pageContent">
+
+<div layoutH="1">
+<table class="ReportTable"  type='AddReport' border="1"  column_count=<?php echo $templateInfo['column_count']?> row_count=<?php echo $templateInfo['row_count']?>
+		PostURL="<?php echo $this->url('report',array('controller'=>'weeklyreport','action'=>'checkWeeklyReportAdd'));?>"   >
+<thead>
+   <tr>
+      <td colspan="<?php echo $templateInfo['column_count']?>" align="center" ><span  name= "title" style="width: 80%"><?php echo $title?></span></td>
+   </tr>
+</thead>
+<tbody>
+
+<?php foreach ($reportinitHtml as $rowkey=>$row){?>
+	<tr >
+	
+	<?php foreach ($row as $key=>$cell){?>
+		<td 
+		width="<?php echo $cell['width']?>" <?php if($key ==0  || $cell['content'] == 'edit'){ echo ' height="'.$cell['height'].'"'; }?>"
+		colspan="<?php echo $cell['colspan']?>" rowspan="<?php echo $cell['rowspan']?>"
+		type = "<?php echo $cell['type']?>" address="<?php echo $cell['address']?>" sort="<?php echo $cell['sort']?>" 
+		enedit = "<?php  echo isset($cell['enedit'])?$cell['enedit']:'F'?>"
+		>
+		<?php 
+				if($cell['content'] == 'edit'){
+					echo $this->formTextarea($form->get($cell['address']));
+				}else {
+					echo $cell['content'];
+				}
+		?>
+		</td>
+		
+	<?php }?>
+			
+	</tr>
+	
+<?php }?>
+
+</tbody>
+<tfoot>
+   <tr>
+     <td colspan="<?php echo $templateInfo['column_count']?>" align='right'><input class='ReportFormSubmitButton' type='button' value='提交'></td>
+   </tr>
+</tfoot>
+</table>
+</div>
+</div><!-- pageContent end -->

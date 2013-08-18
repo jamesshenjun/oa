@@ -1,0 +1,68 @@
+<?php if ($this->pageCount): ?>
+<div class="pagination pagination-centered">
+<ul>
+<!-- Previous page link -->
+
+<?php if (isset($this->previous)): ?>
+<li>
+<a target=paginator   href="<?php echo $this->url($this->route,array('controller'=>$this->controller,'action'=>$this->action)); ?>?page=<?php echo $this->first;?>" data="<?php echo $this->data?>" > 首页
+</a>
+</li>
+<li>
+
+<a target=paginator href="<?php echo $this->url($this->route,array('controller'=>$this->controller,'action'=>$this->action)); ?>?page=<?php echo $this->previous;?>" data="<?php echo $this->data?>" > <<
+</a>
+</li>
+<?php else: ?>
+<li class="disabled">
+<a href="#">
+首页
+</a>
+</li>
+<li class="disabled">
+<a href="#">
+<<
+</a>
+</li>
+<?php endif; ?>
+<!-- Numbered page links -->
+<?php foreach ($this->pagesInRange as $page): ?>
+<?php if ($page != $this->current): ?>
+<li>
+<a target=paginator href="<?php echo $this->url($this->route,array('controller'=>$this->controller,'action'=>$this->action));?>?page=<?php echo $page; ?>" data="<?php echo $this->data?>">
+<?php echo $page; ?>
+</a>
+</li>
+<?php else: ?>
+<li class="active">
+<a href="#"><?php echo $page; ?></a>
+</li>
+<?php endif; ?>
+<?php endforeach; ?>
+<!-- Next page link -->
+<?php if (isset($this->next)): ?>
+<li>
+<a target=paginator href="<?php echo $this->url($this->route,array('controller'=>$this->controller,'action'=>$this->action)); ?>?page=<?php echo $this->next; ?>" data="<?php echo $this->data?>" >
+>>
+</a>
+</li>
+<li>
+<a target=paginator href="<?php echo $this->url($this->route,array('controller'=>$this->controller,'action'=>$this->action)); ?>?page=<?php echo $this->last; ?>" data="<?php echo $this->data?>" >
+尾页
+</a>
+</li>
+<?php else: ?>
+<li class="disabled">
+<a href="#">
+>>
+</a>
+</li>
+<li class="disabled">
+<a href="#">
+尾页
+</a>
+</li>
+<?php endif; ?>
+</ul>
+</div>
+<?php endif; ?>

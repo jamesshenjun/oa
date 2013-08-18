@@ -1,0 +1,40 @@
+<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" 		href="<?php echo $this->url('system',array('controller'=>'department','action'=>'showDepartmentAdd'));?>" target="navTab" title="添加部门" rel="showDepartmentAdd"><span>添加部门</span></a></li>
+			<li><a class="delete"   href="<?php echo $this->url('system',array('controller'=>'department','action'=>'checkDepartmentDelete'));?>?id={id}" target="ajaxTodo" title="确定要删除吗?" ><span>删除部门</span></a></li>
+			<li><a class="edit"     href="<?php echo $this->url('system',array('controller'=>'department','action'=>'showDepartmentEdit'));?>?id={id}" target="navTab" title="修改部门" rel="{id}" ><span>修改部门</span></a></li>
+			<li class="line">line</li>
+		</ul>
+</div>
+<div class="pageContent nowrap">
+	<table class="table" width='100%' border='1' layoutH='104'>
+  		<thead>
+		    <tr>
+		        <th align="center" width='60'>部门编号</th>
+				<th align="center" >部门名称</th>
+				<th align="center" width="100">部门级别</th>
+				<th align="center" width="100">下级部门数量</th>
+				<th align="center" width='80'>部门状态</th>
+			</tr>
+		</thead>
+	     <tbody>      
+	         <?php foreach ($departmentList as $department):?>
+	            <?php $maginLeft = 20*$department['level'];?>
+	            <tr target="id" rel="<?php echo $department['id']?>">
+	            	<td align='center'><?php echo $department['id']?></td>
+	                <td align='left'>
+	                   <?php if($department['children_count']>0):?>
+	                      <div  class="folder" style="margin-left:<?php echo $maginLeft?>px;"></div>
+	                   <?php elseif($department['children_count']==0):?>
+	                      <div  class="file"   style="margin-left:<?php echo $maginLeft?>px;"></div>
+	                   <?php endif;?>
+	                   <span class='item'><?php echo $department['name']?></span>
+	                </td>
+				    <td align='center'><?php echo $department['level'];?></td>
+	                <td align="center"><?php echo $department['children_count'];?></td>
+	                <td align='center'><?php echo $department['status']?></td>
+	            </tr>
+	        <?php endforeach;?>
+	      </tbody>     
+	</table>
+</div><!-- pageContent end -->

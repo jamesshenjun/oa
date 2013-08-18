@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>东信同邦-自动化办公系统</title>
+<link href="<?php echo $this->basePath();?>/theme/application/index/login.css" rel="stylesheet" type="text/css" />
+</head>
+<script src="<?php echo $this->basePath();?>/js/org/jquery/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="<?php echo $this->basePath();?>/js/etah/common/function.js" type="text/javascript"></script>
+<script type='text/javascript'>
+$(document).ready(function() {
+	$("#loginFormSubmit").click(function(){
+		
+        var postData = new Object();
+        postData["username"] = $("input[name='username']").val();
+        postData["password"] = $("input[name='password']").val();
+        postData["captcha"] = $("input[name='captcha']").val();
+        
+	    var postData = $.param(postData);
+	    var postUrl = $("#loginForm").attr('action');
+	    
+	    ajaxGetJsonData(postData,postUrl,function(data){
+            var statusCode = data.statusCode;
+            var message = data.message;
+            
+            if(statusCode==1){
+            	window.location.href = "<?php echo $this->basePath(); ?>";
+            }else{
+            	showErrorMessage(message);
+            }
+	    });
+	});
+})
+function freshCaptcha(){
+   $("#captchaImg").attr("src", "<?php echo $this->url('application', array('controller'=>'index','action'=>'captcha')); ?>?random="+Math.random());
+}
+</script>
+<body>
+	<div id="login">
+		<div id="login_header">
+			<h1 class="login_logo">
+				<a><!--<img alt="" />  --></a>
+			</h1>
+			<div class="login_headerContent">
+				<div class="navList">
+					<ul>
+						<li><a href="#">设为首页</a></li>
+						<li><a href="#">反馈</a></li>
+						<li><a href="#" target="_blank">帮助</a></li>
+					</ul>
+				</div>
+				<h2 class="login_title"></h2>
+			</div>
+		</div>
+		<div id="login_content">
+			<div class="loginForm">
+				<form id="loginForm" onsubmit="javascript:return false;" action="<?php echo $this->url('application', array('controller'=>'index','action'=>'checkUserLogin')); ?>" method="post">
+					<table border='0'>
+					    <tr>
+					       <td><label>用户名：</label></td>
+					       <td colspan='2'><input type="text" name="username" size="20" class="login_input" /></td>
+					    </tr>
+					    <tr>
+					       <td><label>密码：</label></td>
+					       <td colspan='2'><input type="password" name="password" size="20" class="login_input" /></td>
+					    </tr>
+						<tr>
+					       <td><label>验证码：</label></td>
+					       <td><input type="text" name="captcha" size="6"  class="captcha"/></td>
+					       <td><img id="captchaImg" src="<?php echo $this->url('application', array('controller'=>'index','action'=>'captcha')); ?>" alt="" onClick="freshCaptcha()" style="cursor:pointer"/></td>
+					    </tr>
+					    <tr>
+					       <td>&nbsp;</td>
+					       <td><input id="loginFormSubmit" class="sub" type="submit" value="登录" /></td>
+					       <td><input type='reset'  value="重置" /></td>
+					    </tr>
+					</table>
+				</form>
+			</div>
+			<div class="login_banner"><img src="<?php echo $this->basePath();?>/theme/default/images/login_banner.jpg" /></div>
+			<div class="login_main">
+				<ul class="helpList">
+					<li><a href="#"></a></li>
+					<li><a href="#"></a></li>
+					<li><a href="#"></a></li>
+					<li><a href="#"></a></li>
+				</ul>
+				<div class="login_inner">
+				</div>
+			</div>
+		</div>
+		<div id="login_footer">Copyright &copy; 东信同邦. All Rights Reserved.</div>
+			
+		
+	</div>
+</body>
+</html>

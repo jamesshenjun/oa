@@ -1,0 +1,75 @@
+<div class="pageHeader">
+    <form id="pagerForm" action="<?php echo $this->url('system',array('controller'=>'user','action'=>'showUserList'));?>"   method="post"  onSubmit='return navTabSearch(this);'>
+     <input type="hidden" name="pageNum" 		value="1" />
+	 <input type="hidden" name="numPerPage" 	value="<?php echo $numPerPage;?>" />
+	 <table class="searchContent">
+        <tr>
+            <td><label>用户编号：</label></td>
+            <td><input type="text" name="userId"  value="<?php echo $userId;?>"/>
+            <td><label>用户名称：</label></td>
+            <td><input type="text" name="nameStr" value="<?php echo $nameStr;?>"/></td>
+            <td><label>所在部门：</label></td>
+            <td><select name="departmentId"  >
+				        <option value="">请选择部门</option>
+				    <?php foreach ($departmentList as $key=>$department):?>
+				        <option value="<?php echo $key;?>" <?php if($key==$departmentId): echo 'selected="selected"'; endif;?>><?php echo $department;?></option>
+				    <?php endforeach;?>
+				</select>
+			</td>
+            <td><input type="submit" value='点击查询' /></td>
+        </tr>
+     </table>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="<?php echo $this->url('system',array('controller'=>'user','action'=>'showUserAdd'));?>" target="navTab" title="添加用户" rel='showUserAdd' ><span>添加用户</span></a></li>
+			<li><a class="delete" href="<?php echo $this->url('system',array('controller'=>'user','action'=>'checkUserDelete'));?>?id={id}" target="ajaxTodo" title="确定要删除吗?"><span>删除用户</span></a></li>
+			<li><a class="edit" href="<?php echo $this->url('system',array('controller'=>'user','action'=>'showUserEdit'));?>?id={id}" target="navTab" title="编辑用户" rel={id} ><span>修改用户</span></a></li>
+		</ul>
+	</div>
+	<table class="table" width="99%"  layoutH="113" targetType="navTab">
+		<thead>
+			<tr>
+			    <th align='center' width="40">编号</th>
+				<th align='center'>用户名</th>
+				<th align='center' width="200">电子邮箱</th>
+				<th align='center' width="140">联系电话</th>
+				<th align='center' width="140">所在部门</th>
+				<th align='center' width="160">创建时间</th>
+			</tr>
+		</thead>
+		<tbody>
+		    <?php foreach ($userList as $user):?>
+			<tr target="id" rel="<?php echo $user['id']; ?>">
+			    <td align='center'><?php echo $user['id'];?></td>
+				<td align='center'><?php echo $user['realname'];?></td>
+				<td align='center'><?php echo $user['email'];?></td>
+				<td align='center'><?php echo $user['telephone'];?></td>
+				<td align='center'><?php echo $user['department_name'];?></td>
+				<td align='center'><?php echo $user['add_time'];?></td>
+			</tr>
+		    <?php endforeach;?>
+		</tbody>
+	</table>
+	<div class="panelBar">
+		<div class="pages">
+			<span>显示</span>
+			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+				<option value="20" <?php if ($numPerPage==20): echo 'selected="selected"';endif;?>>20</option>
+				<option value="50" <?php if ($numPerPage==50): echo 'selected="selected"';endif;?>>50</option>
+				<option value="100" <?php if ($numPerPage==100): echo 'selected="selected"';endif;?>>100</option>
+				<option value="200" <?php if ($numPerPage==200): echo 'selected="selected"';endif;?>>200</option>
+			</select>
+			<span>条，共<?php echo $totalCount;?>条</span>
+		</div>		
+		<div class="pagination" 
+		    targetType="navTab"
+		    totalCount="<?php echo $totalCount;?>" 
+		    numPerPage="<?php echo $numPerPage;?>" 
+		    pageNumShow="<?php echo $pageNumShow;?>" 
+		    currentPage="<?php echo $pageNum;?>">
+		</div>
+	</div>
+</div>

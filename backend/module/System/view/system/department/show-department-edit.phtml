@@ -1,0 +1,60 @@
+<div class="pageContent">
+<?php 
+	$form = $this->departmentForm;
+	$action = $this->url('system',array('controller'=>'department','action'=>'checkDepartmentEdit'));
+	$form->setAttribute('action',  $action);
+	echo $this->form()->openTag($form);
+?>
+
+<table  class="list" width="100%">
+        <tbody>
+        	<?php if($form->has('org.parent_name')&& $form->has('org.parent_id')):?>
+        	<tr>
+				<td align="center" width='140'>上级部门</td>
+				<td align="left">
+				<?php echo $this->formText($form->get('org.parent_name'));?>
+				<?php echo $this->formHidden($form->get('org.parent_id'));?>
+				<a class="btnLook" href="<?php echo $this->url('system', array('controller'=>'department','action'=>'setParentOrg'))?>?id=<?php echo $form->get('id')->getValue()?>" lookupgroup="org" width="350"  >选择上级部门</a>
+				</td>
+			</tr>
+			<?php endif;?>
+			<tr>
+				<td align="center" width='140'><label>报告类型</label></td>
+				<td align="left"><?php echo $this->formSelect($form->get('report_type'))?></td>
+			</tr>
+			<tr>
+				<td align="center"><label>日报模板</label></td>
+				<td align="left"><?php echo $this->formSelect($form->get('daily_report_template_id'))?></td>
+			</tr>
+			<tr>
+				<td align="center"><label>周报模板</label></td>
+				<td align="left"><?php echo $this->formSelect($form->get('weekly_report_template_id'))?></td>
+			</tr>
+			<tr>
+				<td align="center"  ><label>部门名称</label></td>
+				<td align="left"><?php echo $this->formText($form->get('name'))?></td>
+			</tr>
+			<tr>
+				<td align="center"><label>部门领导</label></td>
+				<td align="left">
+				<?php echo $this->formHidden($form->get('leader.user_id'));?>
+				<?php echo $this->formText($form->get('leader.user_name'));?>
+				<a class="btnLook" href="<?php echo $this->url('system', array('controller'=>'user','action'=>'showUserList'))?>?Action=selectLeader" lookupgroup="leader" width="800" warn="请先选择上级部门" >选择上级部门</a>
+				</td>
+			</tr>
+			<tr>
+				<td align="center"><label>部门描述</label></td>
+				<td align="left"><?php echo $this->formTextarea($form->get('description'))?></td>
+			</tr>
+			<tr>
+			    <td>&nbsp;</td>
+			    <td  align="left">
+			    	<?php echo $this->formHidden($form->get('id'));?>
+			    	<?php echo $this->formButton($form->get('submit'));?>
+			    	<?php echo $this->formButton($form->get('reset'));?>
+			    </td>
+			</tr>
+		</tbody>	
+	</table>
+<?php echo $this->form()->closeTag();?>
+</div><!-- pageContent end -->

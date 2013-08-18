@@ -1,0 +1,283 @@
+@CHARSET "UTF-8";
+
+.content {
+	margin-left: 0;
+    padding: 5px;
+	border: solid 1px #CCCCCC;
+}
+.content-left{
+	width: 250px;
+	padding: 0px 0px 0px 0px;
+	margin: 5px 5px 5px 5px;
+	border: solid 2px #CCCCCC;
+
+}
+
+.content-right{
+	width: 680px;
+	padding: 0px 5px 5px 5px;
+	margin: 5px 5px 5px 5px;
+}
+
+/*上方搜索栏样式*/
+
+.searchContent{
+	width: 100%;
+	background-color: #eeeeee;
+	border: solid 1px #cccccc;
+	margin-bottom: 10px;
+}
+
+.searchContent tr{
+	width:100%;
+
+}
+.searchContent td{
+}
+
+.searchContent .searchvalue{
+width: 300px;
+margin: 5px 5px 5px 15px;
+height:23px;
+line-height: 22px;
+font-size: 18px;
+}
+
+.searchContent .searchbutton{
+background: url(image/searchbtn.png)  no-repeat scroll 0 0 transparent;
+border: 0 none;
+cursor: pointer;
+font-size: 12px;
+font-weight: bold;
+height: 30px;
+margin:0px;
+padding: 0 0 5px;
+width: 71px;;
+}
+
+
+/*左侧导航的样式*/
+
+.StrectchMenuHeader{
+	font-style: oblique;
+	font-size: 16px;
+	line-height: 35px;
+	background-color: #dddddd;
+	
+}
+
+.Accordion{
+width:100%;
+border:1px solid #bdbdbd;
+}
+.Accordion .AccordionHeader{
+width:100%;
+height:34px;
+font-size:14px;
+line-height:34px;
+text-indent:10px;
+cursor:pointer;
+}
+.Accordion .AccordionHeader.expanded{
+background:url(StrectchMenu/ExpandedBg.jpg);
+color:#58606c;
+background-color: #eeeeee;
+border-bottom: solid 1px #777777;
+}
+.Accordion .AccordionHeader.compressed{
+background:url(StrectchMenu/CompressedBg.jpg);
+color:#58606c;
+background-color: #eeeeee;
+border-bottom: solid 1px #777777;
+}
+
+.Accordion .AccordionContent.expanded{
+border-bottom: solid 1px #777777;
+}
+.Accordion .AccordionContent.compressed{
+display:none;
+border-bottom: solid 1px #777777;
+}
+
+.AccordionContent ul{
+margin:0px;
+padding:0px;
+}
+.AccordionContent ul li{
+background:url(StrectchMenu/ItemBg.jpg);
+font-size:12px;
+list-style:none;
+line-height:30px;
+text-indent:20px;
+cursor:pointer;
+}
+.AccordionContent ul li a{
+	text-decoration: none;
+}
+
+/*右侧文章列表的样式*/
+.Breadcrumbs{
+	padding: 8px;
+	background-color: #eeeeee;
+	margin-bottom: 5px;
+	border: solid 1px #cccccc;
+}
+
+.articleList{
+border: 1px solid #cccccc;
+padding: 3px;
+}
+
+.articleList a{
+color:#000000;
+text-decoration: none;
+}
+
+.articleList a:hover{
+color:#ff0000;
+text-decoration: underline;
+}
+
+.articleList table{
+margin:0px auto;	
+}
+
+.articleList table thead th{
+text-align:left;
+text-indent:20px;
+height:30px;
+line-height:30px;
+}
+.articleList table tbody td{
+font-size:14px;
+height:30px;
+line-height:30px;
+}
+
+.articleList table tbody td span{
+float: right;
+width: 110px;
+font-size: 12px;
+color: #9A9A9A;
+}
+
+
+/*右侧文章内容样式*/
+.articleContent{
+	width:100%;
+	padding: 0 0 0 0 ;
+	margin: 0 0 0 0;
+
+}
+
+.articleContent h4{
+font-size: 24px;
+font-weight: bold;
+margin: 35px auto 10px;
+text-align: center;
+clear: both;
+display: block;
+}
+.articleContent h6{
+font-size: 14px;
+font-weight: bold;
+margin: 15px 100px 20px 10px;
+text-align: right;
+clear: both;
+display: block;
+
+}
+
+.articleContent .msg{
+color: #7F7F7F;
+font-size: 12px;
+text-align: center;
+margin: 10px auto 50px auto;
+}
+
+.articleContent .articleContentBody{
+	
+	font-size: 14px;
+	line-height: 24px;
+	padding: 10px 50px 10px 50px;
+
+	white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */ 
+	white-space: -pre-wrap;      /* Opera 4-6 */ 
+	white-space: -o-pre-wrap;    /* Opera 7 */ 
+	word-wrap: break-word;
+}
+
+/*---在文章列表页显示的分页的地方，这部分的CSS是从boot.strap.min.css中扣出来的--------*/
+.pagination {
+height:40px;
+margin:20px 0
+}
+
+.pagination a{
+color:#000000;
+}
+
+.pagination a:hover{
+color:#ff0000;
+text-decoration:underline;
+}
+
+.pagination ul {
+	display:inline-block;
+	*display:inline;
+	margin-bottom:0;
+	margin-left:0;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	*zoom:1;
+	-webkit-box-shadow:0 1px 2px rgba(0,0,0,0.05);
+	-moz-box-shadow:0 1px 2px rgba(0,0,0,0.05);
+	box-shadow:0 1px 2px rgba(0,0,0,0.05)
+}
+.pagination ul>li {
+	display:inline
+}
+.pagination ul>li>a,.pagination ul>li>span {
+	float:left;
+	padding:0 14px;
+	line-height:38px;
+	text-decoration:none;
+	background-color:#fff;
+	border:1px solid #ddd;
+	border-left-width:0
+}
+.pagination ul>li>a:hover,.pagination ul>.active>a,.pagination ul>.active>span {
+	background-color:#f5f5f5
+}
+.pagination ul>.active>a,.pagination ul>.active>span {
+	color:#999;
+	cursor:default
+}
+.pagination ul>.disabled>span,.pagination ul>.disabled>a,.pagination ul>.disabled>a:hover {
+	color:#999;
+	cursor:default;
+	background-color:transparent
+}
+.pagination ul>li:first-child>a,.pagination ul>li:first-child>span {
+	border-left-width:1px;
+	-webkit-border-radius:3px 0 0 3px;
+	-moz-border-radius:3px 0 0 3px;
+	border-radius:3px 0 0 3px
+}
+.pagination ul>li:last-child>a,.pagination ul>li:last-child>span {
+	-webkit-border-radius:0 3px 3px 0;
+	-moz-border-radius:0 3px 3px 0;
+	border-radius:0 3px 3px 0
+}
+.pagination-centered {
+	text-align:center
+}
+.pagination-right {
+	text-align:right
+}
+
+
+
+
+

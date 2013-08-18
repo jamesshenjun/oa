@@ -1,0 +1,98 @@
+<?php
+ 
+$form = $this->PageForm;
+$form->setAttribute('action', $this->url('report',array('controller'=>'weeklyreport','action'=>'showWeeklyReportList')));
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('pageNum'));
+echo $this->formHidden($form->get('numPerPage'));
+echo $this->formHidden($form->get('keywords'));
+echo $this->formHidden($form->get('nameStr'));
+echo $this->formHidden($form->get('departmentId'));
+echo $this->form()->closeTag();
+?>
+
+<div class="pageHeader">
+<?php 
+$form = $this->ReportSearchForm;
+$form->setAttribute('action',$this->url('report',array('controller'=>'weeklyreport','action'=>'showWeeklyReportList')));
+echo $this->form()->openTag($form);
+?>
+<table class="searchContent">
+        <tr>
+            <td width='60'><label>提交人：</label></td>
+            <td width='160'><?php echo $this->formText($form->get('nameStr'));?></td>
+            <td width='60'><label>关键字：</label></td>
+            <td width='160'><?php echo $this->formText($form->get('keywords'));?></td>
+            <td width='60'><label>所在部门：</label></td>
+            <td width='160'><?php  echo $this->formSelect($form->get('departmentId'));?></td>
+			<td><?php echo $this->formButton($form->get('submit'))?></td>
+        </tr>
+</table>
+<?php echo $this->form()->closeTag();?>
+</div><!--pageHeader end  -->
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="<?php echo $this->url('report',array('controller'=>'weeklyreport','action'=>'showWeeklyReportAdd'));?>" target="navTab" title="添加周报" rel='showWeeklyReportAdd'  ><span>添加周报</span></a></li>
+			<li><a class="delete" href="<?php echo $this->url('report',array('controller'=>'weeklyreport','action'=>'checkWeeklyReportDelete'));?>?id={id}" target="ajaxTodo" title="确定要删除周报吗?"><span>删除周报</span></a></li>
+			<li><a class="edit" href="<?php echo $this->url('report',array('controller'=>'weeklyreport','action'=>'showWeeklyReportEdit'));?>?id={id}" target="navTab" rel={id}  ><span>修改周报</span></a></li>
+			<li class="line">line</li>
+			<li><a class="add"    href="<?php echo $this->url('report',array('controller'=>'weeklyreport','action'=>'showWeeklyReportPreview'));?>?id={id}"  title="周报查看"   target="navTab"  warn="请选择一个周报" rel={id} ><span>查看周报</span></a></li>		
+		</ul>
+	</div>
+	<table class="table" width="100%"  layoutH="114" targetType="navTab">
+		<thead>
+			<tr>
+ 			    <th align='center' width="100">时间范围</th> 
+				<th align='center'>标题</th>
+				<th align='center' width="100">提交人</th>
+				<th align='center' width="140">所在部门</th>
+				<th align='center' width="160">创建时间</th>
+				<th align='center' width="60">状态</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php 
+				$flag = '';
+				if (sizeof($reportList) < 1):
+                  echo '<tr><td colspan="6"  align="center"  >没有数据</td></tr>'; 
+				else:
+			?>
+		    <?php foreach ($reportList as $value):?>
+			<tr target="id" rel="<?php echo $value['id']; ?>">
+			    <td><input type="hidden" name="ids" value="<?php echo $value['id']; ?>"/>
+			    <?php 
+			    if ($flag != $value['TimeBucket'])
+				{
+				    $flag = $value['TimeBucket'];
+					echo $value['TimeBucket'];
+				}?>
+			    
+			    </td>
+			    <td><a href="<?php echo $this->url('report',array('controller'=>'weeklyreport','action'=>'showWeeklyReportPreview'));?>?id=<?php echo $value['id']; ?>"  title="<?php echo $value['title'];?>"   target="navTab" rel=<?php echo $value['id']; ?> ><?php echo $value['title'];?></td>
+				<td><?php echo $value['add_user_name'];?></td>
+				<td><?php echo $value['department_name'];?></td>
+				<td><?php echo $value['add_time'];?></td>
+				<td><?php echo $value['status'];?></td>
+			</tr>
+		    <?php endforeach;endif;?>
+		</tbody>
+	</table>
+	<div class="panelBar">
+		<div class="pages">
+			<span>显示</span>
+			<?php 
+			$form = $this->PerPageForm;
+			echo $this->formSelect($form->get('numPerPage'));
+			?>			
+			<span>条，共<?php echo $totalCount;?>条</span>
+		</div>		
+		<div class="pagination" 
+		    targetType="navTab"
+		    totalCount="<?php echo $totalCount;?>" 
+		    numPerPage="<?php echo $numPerPage;?>" 
+		    pageNumShow="<?php echo $pageNumShow;?>" 
+		    currentPage="<?php echo $pageNum;?>">
+		</div>
+	</div>
+</div>

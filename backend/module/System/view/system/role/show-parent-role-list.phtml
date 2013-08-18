@@ -1,0 +1,43 @@
+<div class="pageContent">
+	<table class="table" width="100%"  layoutH="50" targetType="navTab">
+		<thead>
+			<tr>
+				<th width="40">&nbsp;</th>
+				<th width="40"  align='center'>编号</th>
+				<th align='center'>角色名称</th>
+				<th width="80"  align='center'>角色级别</th>
+				<th width="90"  align='center'>子角色数量</th>
+				<th width="80"  align='center'>用户数量</th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php foreach ($roleList as $role):?>
+		<tr target="id" rel="<?php echo $role['id'];?>">
+			<?php if(!in_array($role['id'],$roleChildrenChildrenIdList)):?>
+	           	<td align='center' width='40'><input type="radio" name="role" value="{parent_id:'<?php echo $role['id'];?>',parent_name:'<?php echo $role['name'];?>'}" /></td>
+	        <?php else:?>
+	            <td align='center' width='40'>&nbsp;</td>
+	        <?php endif;?>
+		    <td><?php echo $role['id'];?></td>
+			<td>
+				<?php if($role['children_count']>0):?>
+	                 <div  class="folder" style="margin-left:<?php echo $role['margin_left']?>px;"></div>
+	            <?php elseif($role['children_count']==0):?>
+	                 <div  class="file"   style="margin-left:<?php echo $role['margin_left']?>px;"></div>
+	            <?php endif;?>
+				<span class='item'><?php echo $role['name']?></span>
+			</td>
+			<td><?php echo $role['level'];?></td>
+			<td><?php echo $role['children_count'];?></td>
+			<td><?php echo $role['user_count'];?></td>
+		</tr>
+		<?php endforeach;?>
+		</tbody>
+		<tfoot>
+		    <tr>
+		       <td colspan='5' align='right'><input type="button" multLookup="role" warn="请选择一个父级角色"  value='确认选择' /></td>
+		    </tr>
+		</tfoot>	
+	</table>
+	
+</div><!-- pageContent end -->

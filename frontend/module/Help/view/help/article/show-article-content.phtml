@@ -1,0 +1,17 @@
+<?php echo $this->headerSearch;?>
+<div class="content">
+	
+	<div class="articleContent">
+		<div class="articleContentHeader">
+			<h4><?php echo $articleInfo['title']?></h4>
+			<h6>—— &nbsp;&nbsp;<?php echo $articleInfo['sub_title']?></h6>
+			<div class="msg">点击数:<?php echo $articleInfo['hits']?> &nbsp;&nbsp;&nbsp;发布时间:<?php echo $articleInfo['add_time']?>&nbsp;&nbsp;&nbsp;作者：<?php echo $articleInfo['user_name']?> &nbsp;&nbsp;&nbsp;</div>
+		</div>
+		<div class="articleContentBody">
+		
+			<?php echo $articleContent?>
+		</div>
+	</div>
+
+
+</div>
